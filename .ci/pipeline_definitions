@@ -16,6 +16,7 @@ replica-reloader:
             image: 'eu.gcr.io/gardener-project/gardener/replica-reloader'
             dockerfile: 'Dockerfile'
             target: replica-reloader
+            tag_template: ${EFFECTIVE_VERSION}-konnectivity-server-v0.0.14
     steps: ~
   jobs:
     head-update:
