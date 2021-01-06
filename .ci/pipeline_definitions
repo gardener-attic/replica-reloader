@@ -1,0 +1,46 @@
+# SPDX-FileCopyrightText: 2020 SAP SE or an SAP affiliate company and Gardener contributors
+#
+# SPDX-License-Identifier: Apache-2.0
+
+replica-reloader:
+  template: 'default'
+  base_definition:
+    repo: ~
+    traits:
+      version:
+        preprocess: 'inject-commit-hash'
+      publish:
+        dockerimages:
+          replica-reloader:
+            registry: 'gcr-readwrite'
+            image: 'eu.gcr.io/gardener-project/gardener/replica-reloader'
+            dockerfile: 'cmd/Dockerfile'
+            target: replica-reloader
+    steps: ~
+  jobs:
+    head-update:
+      traits:
+        component_descriptor: ~
+        draft_release: ~
+    pull-request:
+      traits:
+        pull-request: ~
+        component_descriptor: ~
+    release:
+      traits:
+        version:
+          preprocess: 'finalize'
+        release:
+          nextversion: 'bump_minor'
+        slack:
+          default_channel: 'internal_scp_workspace'
+          channel_cfgs:
+            internal_scp_workspace:
+              channel_name: 'C9CEBQPGE' #sap-tech-gardener
+              slack_cfg_name: 'scp_workspace'
+        component_descriptor: ~
+        publish:
+          dockerimages:
+            replica-reloader:
+              tag_as_latest: true
+              tag_template: ${EFFECTIVE_VERSION}-konnectivity-server-v0.0.14
