@@ -2,6 +2,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+# make sure to update .devcontainer/devcontainer.json as well when changing this version.
 FROM eu.gcr.io/gardener-project/3rd/golang:1.15.5 AS builder
 
 WORKDIR /workdir
