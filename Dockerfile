@@ -2,6 +2,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+# make sure to update .devcontainer/devcontainer.json as well when changing this version.
 FROM eu.gcr.io/gardener-project/3rd/golang:1.15.5 AS builder
 
 WORKDIR /workdir
@@ -16,6 +17,15 @@ FROM eu.gcr.io/gardener-project/3rd/alpine:3.12.1 AS base
 
 ############# replica-reloader #############
 FROM base AS replica-reloader
+
+LABEL org.opencontainers.image.authors="Gardener contributors"
+LABEL org.opencontainers.image.description="Small Kubernetes controller that watches Deployments and runs commands with replica count as last argument. It contains the konnectivity-server."
+LABEL org.opencontainers.image.documentation="https://github.com/gardener/replica-reloader"
+LABEL org.opencontainers.image.licenses="Apache-2.0"
+LABEL org.opencontainers.image.source="https://github.com/gardener/replica-reloader"
+LABEL org.opencontainers.image.title="replica reloader with konnectivty-server "
+LABEL org.opencontainers.image.url="https://github.com/gardener/replica-reloader"
+LABEL org.opencontainers.image.vendor="Gardener contributors"
 
 COPY --from=builder /workdir/replica-reloader .
 COPY --from=konnectivity-server-base /proxy-server .
