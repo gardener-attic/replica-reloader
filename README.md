@@ -29,7 +29,6 @@ $(terminal-1) ps | grep sleep
 61191 ttys003    0:00.00 sleep 10`,
 ```
 
-
 ## Why it was created
 
 It was originally created as to be used in situations where you want to run some process with static count of replicas as flag (e.g. [apiserver-network-proxy](https://github.com/kubernetes-sigs/apiserver-network-proxy) that has a `--server-count` flag). In some, cases the process must be restarted with the new server count.
