@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 replica-reloader:
-  template: 'default'
+  template: default
   base_definition:
     repo: ~
     traits:
@@ -31,9 +31,9 @@ replica-reloader:
     release:
       traits:
         version:
-          preprocess: 'finalize'
+          preprocess: finalize
         release:
-          nextversion: 'bump_minor'
+          nextversion: bump_minor
         component_descriptor: ~
         publish:
           dockerimages:
@@ -43,6 +43,8 @@ replica-reloader:
       repo:
         trigger: false
       traits:
+        version:
+          preprocess: finalize
         publish:
           dockerimages:
             replica-reloader:
@@ -55,6 +57,8 @@ replica-reloader:
       repo:
         trigger: false
       traits:
+        version:
+          preprocess: finalize
         publish:
           dockerimages:
             replica-reloader:
