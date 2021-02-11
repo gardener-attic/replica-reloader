@@ -10,6 +10,9 @@
 !/.gitignore
 !/cmd
 !/internal
+!/internal/**/*.go
+!/konnectivity-server
+!/konnectivity-server/Dockerfile
 !/CODEOWNERS
 !/CONTRIBUTING.md
 !/Dockerfile
