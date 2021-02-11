@@ -17,7 +17,9 @@ replica-reloader:
             image: 'eu.gcr.io/gardener-project/gardener/replica-reloader'
             dockerfile: 'Dockerfile'
             target: replica-reloader
-            tag_template: ${EFFECTIVE_VERSION}-konnectivity-server-v0.0.14
+            tag_template: ${EFFECTIVE_VERSION}-konnectivity-server-v0.0.15
+            build_args:
+              PROXY_SERVER_VERSION: 'v0.0.15'
     steps: ~
   jobs:
     head-update:
@@ -34,15 +36,34 @@ replica-reloader:
           preprocess: 'finalize'
         release:
           nextversion: 'bump_minor'
-        slack:
-          default_channel: 'internal_scp_workspace'
-          channel_cfgs:
-            internal_scp_workspace:
-              channel_name: 'C9CEBQPGE' #sap-tech-gardener
-              slack_cfg_name: 'scp_workspace'
         component_descriptor: ~
         publish:
           dockerimages:
             replica-reloader:
               tag_as_latest: true
+    release-konnectivity-v0.0.14:
+      repo:
+        trigger: false
+      traits:
+        version:
+          preprocess: 'finalize'
+        publish:
+          dockerimages:
+            replica-reloader:
+              tag_as_latest: false
               tag_template: ${EFFECTIVE_VERSION}-konnectivity-server-v0.0.14
+              build_args:
+                PROXY_SERVER_VERSION: 'v0.0.14'
+    release-konnectivity-v0.0.15:
+      repo:
+        trigger: false
+      traits:
+        version:
+          preprocess: 'finalize'
+        publish:
+          dockerimages:
+            replica-reloader:
+              tag_as_latest: false
+              tag_template: ${EFFECTIVE_VERSION}-konnectivity-server-v0.0.15
+              build_args:
+                PROXY_SERVER_VERSION: 'v0.0.15'
