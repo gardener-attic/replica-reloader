@@ -40,7 +40,6 @@ replica-reloader:
             replica-reloader:
               tag_as_latest: true
     release-v0.2.0-konnectivity-v0.0.14:
-      name: release-v0.2.0-konnectivity-v0.0.14
       repo:
         trigger: false
       traits:
@@ -53,7 +52,6 @@ replica-reloader:
                 PROXY_SERVER_VERSION: v0.0.14
                 REPLICA_RELOADER_IMAGE: eu.gcr.io/gardener-project/gardener/replica-reloader:v0.2.0
     release-v0.2.0-konnectivity-v0.0.15:
-      name: release-v0.2.0-konnectivity-v0.0.15
       repo:
         trigger: false
       traits:
